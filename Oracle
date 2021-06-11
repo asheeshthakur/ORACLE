@@ -1,0 +1,22 @@
+-- Insert all the data from one table to another table using for loop
+BEGIN
+
+    FOR rec IN (SELECT ID,CUSTOMER_NAMEVARCHAR250_NOT_NU,CITY FROM CUSTOMER_ID_NUMBER10_NOT_NULL)
+    LOOP
+        INSERT INTO CUSTOMERS1 (CUSTOMER_ID, CUSTOMER_NAME,CITY)
+        VALUES (rec.ID, rec.CUSTOMER_NAMEVARCHAR250_NOT_NU, SUBSTR(rec.CITY,0,3));
+        
+    END LOOP;
+END;
+
+-- Update Using for loop
+
+BEGIN
+
+    FOR rec IN (SELECT ID,CUSTOMER_NAMEVARCHAR250_NOT_NU,CITY FROM CUSTOMER_ID_NUMBER10_NOT_NULL)
+    LOOP
+        
+        Update CUSTOMERS1 set CITY =SUBSTR(rec.CITY,0,2) where CUSTOMER_ID = rec.ID;
+        
+    END LOOP;
+END;
